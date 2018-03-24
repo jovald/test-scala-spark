@@ -3,7 +3,7 @@ package com.jovald.spark
 import org.apache.spark._
 import org.apache.log4j._
 
-object AverageFrindsByAge {
+object AverageFriendsByAge {
 
   def parseLine(line: String) = {
     val fields = line.split(",")
