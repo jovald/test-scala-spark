@@ -1,7 +1,6 @@
 package com.jovald.spark
 
 import org.apache.spark._
-import org.apache.spark.SparkContext._
 import org.apache.log4j._
 
 
@@ -22,7 +21,6 @@ object RatingsCounter {
 
     // Count up how many times each value (rating) occurs
     val results = ratings.countByValue()
-    println(results)
 
     // Sort the resulting map of (rating, count) tuples
     val sortedResults = results.toSeq.sortBy(_._1)
