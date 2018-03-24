@@ -17,7 +17,7 @@ object AmountByCostumer {
     Logger.getLogger("org").setLevel(Level.ERROR)
 
     // Create a SparkContext using every core of the local machine, named RatingsCounter
-    val sc = new SparkContext("local[*]", "MinimunTemperatureByLocation")
+    val sc = new SparkContext("local[*]", "AmountByCostumer")
 
     val lines = sc.textFile("src/assets/customer-orders.csv")
 
