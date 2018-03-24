@@ -18,7 +18,7 @@ object AverageFrindsByAge {
     Logger.getLogger("org").setLevel(Level.ERROR)
 
     // Create a SparkContext using every core of the local machine, named RatingsCounter
-    val sc = new SparkContext("local[*]", "RatingsCounter")
+    val sc = new SparkContext("local[*]", "AverageFrindsByAge")
 
     // Load up each line of the ratings data into an RDD
     val lines = sc.textFile("src/assets/fakefriends.csv")
