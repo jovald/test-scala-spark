@@ -22,7 +22,6 @@ object MinimunTemperatureByLocation {
     // Create a SparkContext using every core of the local machine, named RatingsCounter
     val sc = new SparkContext("local[*]", "MinimunTemperatureByLocation")
 
-    // Load up each line of the ratings data into an RDD
     val lines = sc.textFile("src/assets/1800.csv")
 
     val minimumTemperatureByLocation = lines.map(parseLine)
