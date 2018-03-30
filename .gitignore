@@ -12,6 +12,8 @@ tags
 .*.swp
 .*.swo
 
+/src/assets/twitter.txt
+
 build
 .classpath
 .project
