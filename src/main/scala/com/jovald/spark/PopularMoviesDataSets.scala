@@ -23,7 +23,7 @@ object PopularMoviesDataSets {
     // Create a Map of Ints to Strings, and populate it from u.item.
     var movieNames:Map[Int, String] = Map()
     
-     val lines = Source.fromFile("../ml-100k/u.item").getLines()
+     val lines = Source.fromFile("src/assets/ml-100k/u.item").getLines()
      for (line <- lines) {
        var fields = line.split('|')
        if (fields.length > 1) {
@@ -46,13 +46,15 @@ object PopularMoviesDataSets {
     // Use new SparkSession interface in Spark 2.0
     val spark = SparkSession
       .builder
-      .appName("PopularMovies")
+      .appName("MovieRecommendationsALS")
       .master("local[*]")
-      .config("spark.sql.warehouse.dir", "file:///C:/temp") // Necessary to work around a Windows bug in Spark 2.0.0; omit if you're not on Windows.
       .getOrCreate()
+
+    println("Loading movie names...")
+    val nameDict = loadMovieNames()
     
     // Read in each rating line and extract the movie ID; construct an RDD of Movie objects.
-    val lines = spark.sparkContext.textFile("../ml-100k/u.data").map(x => Movie(x.split("\t")(1).toInt))
+    val lines = spark.sparkContext.textFile("src/assets/ml-100k/u.data").map(x => Movie(x.split("\t")(1).toInt))
     
     // Convert to a DataSet
     import spark.implicits._
@@ -71,7 +73,7 @@ object PopularMoviesDataSets {
     */
     
     topMovieIDs.show()
-    
+
     // Grab the top 10
     val top10 = topMovieIDs.take(10)
     
