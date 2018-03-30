@@ -81,6 +81,9 @@ object MovieRecommendationALS {
 
     userRecs.show(false)
 
+    // Stop the session
+    spark.stop()
+
 
   }
 
